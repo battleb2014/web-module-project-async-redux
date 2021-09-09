@@ -1,17 +1,17 @@
-export const FETCH_DATA = 'FETCH_DATA';
+export const BUILD_STATE = 'BUILD_STATE';
 
 const mtg = require('mtgsdk');
 
-export const fetch = () => {
+export const build = () => {
     return ( dispatch ) => {
-        mtg.card.find(4600)
+        mtg.card.find(id)
         .then(res => {
             console.log(res.card)
-            dispatch(fetchData(res))
+            dispatch(buildState(res.card))
         })
     }
 }
 
-export const fetchData = card => {
-    return({ type: FETCH_DATA, payload: card })
+export const buildState = card => {
+    return({ type: BUILD_STATE, payload: card })
 }

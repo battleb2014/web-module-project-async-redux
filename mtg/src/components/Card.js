@@ -1,17 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { fetch } from '../actions';
+import { build } from '../actions';
 
 const Card = props => {
-    handleClick = () => {
-        props.fetch();
-    }
 
     return (
-        <div>
-            <button onClick = { handleClick }></button>
+        <div className = 'card'>
+            <img src = { props.img } />
         </div>
     )
 }
 
-export default connect( null, { fetch } )( Card );
+const mapStateToProps = ( state, props ) => {
+    console.log(state);
+    return {
+        img: state.img,
+        id: props.id
+    }
+}
+
+export default connect( mapStateToProps, { build } )( Card );
